@@ -1,9 +1,6 @@
-﻿using ExampleDesktop.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,9 +23,6 @@ namespace ExampleDesktop
         public MainWindow()
         {
             InitializeComponent();
-            var client = new WebClient() { Encoding = Encoding.UTF8 };
-            var response = client.DownloadString("http://localhost:59983/api/Users");
-            dtgUsers.ItemsSource = JsonConvert.DeserializeObject<List<User>>(response);
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

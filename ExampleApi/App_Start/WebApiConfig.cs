@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Formatting;
 using System.Web.Http;
 
 namespace Example
@@ -20,9 +19,6 @@ namespace Example
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            config.Formatters.Clear();
-            config.Formatters.Add(new JsonMediaTypeFormatter());
         }
     }
 }
