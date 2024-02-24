@@ -1,0 +1,25 @@
+﻿<Window x:Class="ExampleDesktop.UserEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExampleDesktop"
+        mc:Ignorable="d"
+        Title="UserEditWindow" Height="300" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Имя"/>
+        <TextBlock Text="Роль" Grid.Row="1"/>
+        <TextBox Name="tbxName" Grid.Column="1" Height="30"/>
+        <ComboBox Name="cbxRole" Grid.Row="1" Grid.Column="1" Height="30"/>
+        <Button Name="btnSave" Click="btnSave_Click" Grid.Row="2" Grid.Column="1" Height="30" Content="Сохранить"/>
+    </Grid>
+</Window>
