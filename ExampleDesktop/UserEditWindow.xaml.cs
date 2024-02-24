@@ -1,6 +1,10 @@
-﻿using System;
+﻿using ExampleDesktop.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,14 +23,24 @@ namespace ExampleDesktop
     /// </summary>
     public partial class UserEditWindow : Window
     {
-        public UserEditWindow()
+        public UserEditWindow(User user)
         {
             InitializeComponent();
+            var client = new WebClient { Encoding = Encoding.UTF8 };
+            DataContext = user;
+            cbxRole.ItemsSource = JsonConvert.DeserializeObject<List<Role>>(client.DownloadString("http://localhost:59983/api/Roles"));
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            var client = new WebClient() { Encoding = Encoding.UTF8 };
+            client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+            var user = (User)DataContext;
+            user.Role = null;
+            if (user.Id == 0)
+                client.UploadString("http://localhost:59983/api/Users", JsonConvert.SerializeObject(user));
+            else
+                client.UploadString("http://localhost:59983/api/Users", "PUT", JsonConvert.SerializeObject(user));
         }
     }
 }
